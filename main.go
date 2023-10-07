@@ -6,6 +6,7 @@ import (
 	"goredis/backend"
 	"goredis/protocol"
 	"net"
+	"time"
 )
 
 func main() {
@@ -56,7 +57,9 @@ func seedData(backend *backend.Backend) {
 		return
 	}
 
-	backend.Database.Set("key1", "abcd")
-	backend.Database.Set("key2", "EFG")
-	backend.Database.Set("key3", "ABC")
+	backend.Database.Set("key1", "abcd", 5*time.Second)
+	backend.Database.Set("key2", "EFG", 5*time.Second)
+	backend.Database.Set("key3", "ABC", 10*time.Second)
+	backend.Database.Set("key4", "ABC", 10*time.Second)
+	backend.Database.Set("key5", "ABC", 10*time.Second)
 }
